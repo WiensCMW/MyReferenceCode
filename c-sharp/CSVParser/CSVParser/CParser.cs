@@ -10,8 +10,7 @@ namespace CSVParser
     {
         public static void CSVParse()
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), @"CSV Data.csv");
-            string[] csvStringArrayData = File.ReadAllLines(path);
+            string[] csvStringArrayData = File.ReadAllLines(@"CSV Data.csv");
             string csvData = string.Join(",", csvStringArrayData);
 
             // List that will hold the split data
@@ -208,7 +207,7 @@ namespace CSVParser
                 #endregion
             }
 
-            // Pring split values to console
+            // Ptrint split values to console
             for (int i = 0; i < splitData.Count; i++)
             {
                 Console.WriteLine(splitData[i]);

@@ -1,6 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVParser", "CSVParser\CSVParser.csproj", "{1A516DE0-55B0-4E16-AFBF-76263F2951CD}"
 EndProject
 Global
@@ -9,9 +10,15 @@ Global
 		Release|anycpu = Release|anycpu
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Debug|anycpu.ActiveCfg = Debug|anycpu
-		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Debug|anycpu.Build.0 = Debug|anycpu
-		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Release|anycpu.ActiveCfg = Release|anycpu
-		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Release|anycpu.Build.0 = Release|anycpu
+		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{1A516DE0-55B0-4E16-AFBF-76263F2951CD}.Release|anycpu.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0A3AFD2-B4B5-40D9-809E-957722B1467C}
 	EndGlobalSection
 EndGlobal
