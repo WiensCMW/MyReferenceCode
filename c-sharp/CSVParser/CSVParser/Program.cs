@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSVParser
 {
@@ -6,7 +7,12 @@ namespace CSVParser
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Stopwatch watch = new Stopwatch();
+            watch.Restart();
+            CParser.CSVParse();
+
+            Console.WriteLine($"Parse took {watch.Elapsed.TotalMilliseconds}ms");
+            Console.ReadLine();
         }
     }
 }
