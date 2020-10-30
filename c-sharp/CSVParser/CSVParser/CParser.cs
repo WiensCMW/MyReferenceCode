@@ -14,54 +14,82 @@ namespace CSVParser
             // List that will hold the split data
             List<string> splitData = new List<string>();
 
-            bool inQuotationMode = false;
+            // List that will hold the incides of the dropped escaped chars while parsing
+            List<int> droppedEscapes = new List<int>();
+
+            // Parse bools
+            bool csvDataCurrupt = false;
+            bool inDoubleQuotationMode = false;
             bool curCharIsQuote = false;
             bool curCharIsDelimiter = false;
-            bool csvDataCurrupt = false;
+            bool nextCharIsQuote = false;
+            bool nextCharIsDelimiter = false;
+            bool lastChar = false;
 
-            int quotationIndexStart = 0;
-            int quotationIndexEnd = 0;
+            // Parse indices
+            int valueStartIndex = 0;
+            int valueEndIndex = 0;
 
             // Loop over data and keep splitting by delimiter
             while (data.Length > 0 && !csvDataCurrupt)
             {
                 // Reset parse variables
-                quotationIndexStart = -1;
-                quotationIndexEnd = -1;
+                inDoubleQuotationMode = false;
+                valueStartIndex = -1;
+                valueEndIndex = -1;
+                droppedEscapes.Clear();
 
                 // Loop through data to find start and end indices for next value to parse
                 for (int i = 0; i < data.Length; i++)
                 {
-                    // Check if current loop char is double quote
+                    #region Reset loop variables
+                    nextCharIsQuote = false;
+                    nextCharIsDelimiter = false;
+                    #endregion
+
+                    #region Evalutate current loop char
                     curCharIsQuote = data[i] == '"';
                     curCharIsDelimiter = data[i] == ',';
+                    lastChar = i == data.Length - 1;
+                    #endregion
 
+                    #region Check for curruption
                     // If current char is double quote and it's the last char in the string, CSV data is currupt
-                    if (curCharIsQuote && i == data.Length - 1)
+                    if (curCharIsQuote && lastChar)
                     {
                         csvDataCurrupt = true;
                         break;
                     }
+                    #endregion
 
-                    if (!inQuotationMode)
+                    #region Evalute next char
+                    if (!lastChar)
                     {
-                        // We're currently NOT in quotation mode, so check if we should be
+                        nextCharIsQuote = data[i + 1] == '"';
+                        nextCharIsDelimiter = data[i + 1] == ',';
+                    }
+                    #endregion
+
+                    #region Switch quotation mode state machine
+                    if (!inDoubleQuotationMode)
+                    {
+                        // Check if current char is double quote, if so switch to double quotation mode
                         if (curCharIsQuote)
                         {
-                            // Switch to quotation mode
-                            inQuotationMode = true;
+                            inDoubleQuotationMode = true;
 
-                            // Set the quotation mode start index to next char index
-                            quotationIndexStart = i + 1;
+                            // Capture next char as our first
 
-                            // We've found our start index, so break
-                            break;
+                            // Record current index as a dropped escape char
+                            droppedEscapes.Add(i);
+                        }
+                        // Check if current char is our delimiter
+                        else if (curCharIsDelimiter)
+                        {
+
                         }
                     }
-                    else
-                    {
-
-                    }
+                    #endregion
                 }
             }
         }
