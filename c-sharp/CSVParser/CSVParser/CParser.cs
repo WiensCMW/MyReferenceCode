@@ -6,6 +6,10 @@ using System.Threading;
 
 namespace CSVParser
 {
+    /// <summary>
+    /// Reference Links
+    /// VSCode Excel Preview parser: https://github.com/jjuback/gc-excelviewer/blob/f2a42dd02f34488ad714f4df81c7379e75a9a016/out/csv.js#L169
+    /// </summary>
     public static class CParser
     {
         public static void CSVParse()
